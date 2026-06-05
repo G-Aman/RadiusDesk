@@ -600,7 +600,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                 origin = window.location.origin ||
                     window.location.protocol +
                     "//" +
-                    window.location.hostname +
+                    window.location.host +
                     (window.location.port ? ':' + window.location.port: '');
                 Boot.origin = origin;
 

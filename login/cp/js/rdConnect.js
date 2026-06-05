@@ -5,7 +5,7 @@ var rdConnect = (function () {
 
         var uamIp,uamPort,uamProto;  //Variables with 'global' scope
 
-        var h               = document.location.hostname;
+        var h               = document.location.host;
         var isMikroTik      = getParameterByName('link_status') != "";
         //!!!!
         var urlUse          = location.protocol+'//'+h+'/cake4/rd_cake/radaccts/get_usage.json'
@@ -683,7 +683,7 @@ $$('sliderData').refresh();
                     values.ssid = ssid;
                 }   
                     
-                var add_mac  = location.protocol+'//'+document.location.hostname+"/cake4/rd_cake/data-collectors/add-mac.json";
+                var add_mac  = location.protocol+'//'+document.location.host+"/cake4/rd_cake/data-collectors/add-mac.json";
                 webix.ajax().timeout(3000).post(
                     add_mac,
                     values,
@@ -729,7 +729,7 @@ $$('sliderData').refresh();
                      formData.append("dynamic_detail_id", cDynamicData.detail.id);
                  }
                      
-                var email_check = location.protocol+'//'+document.location.hostname+"/cake4/rd_cake/data-collectors/mac-check.json";
+                var email_check = location.protocol+'//'+document.location.host+"/cake4/rd_cake/data-collectors/mac-check.json";
                 
                 webix.ajax().timeout(3000).post(
                     email_check,formData,{ 
@@ -1094,7 +1094,7 @@ $$('sliderData').refresh();
 			    });
 
 			    required.pathname   	= window.location.pathname;
-                required.hostname   	= window.location.hostname;
+                required.hostname   	= window.location.host;
                 required.protocol   	= window.location.protocol;
 			    required.social_login 	= 1;
 			    required.idp_name       = socialName;
@@ -1322,7 +1322,7 @@ $$('sliderData').refresh();
 			    });
 
 			    required.pathname   	= window.location.pathname;
-                required.hostname   	= window.location.hostname;
+                required.hostname   	= window.location.host;
                 required.protocol   	= window.location.protocol;
 			    required.social_login 	= 1;
 			    required.idp_name       = socialName;

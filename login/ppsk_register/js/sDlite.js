@@ -5,7 +5,7 @@ var sDlite = (function () {
     
     
         //=====Constants======
-        cDynUrl         = location.protocol+'//'+document.location.hostname+"/cake4/rd_cake/dynamic-details/info-for.json";
+        cDynUrl         = location.protocol+'//'+document.location.host+"/cake4/rd_cake/dynamic-details/info-for.json";
         cAjaxTimeout    = 3000;
         cDynamicData    = undefined; //Will be populated when gettting DynamicDetail from back-end
         cDebug          = true;
@@ -29,7 +29,7 @@ var sDlite = (function () {
         };
             
         var getDynamicDetail = function(){
-            var h       = document.location.hostname;
+            var h       = document.location.host;
             var s       = document.location.search;
             
             fDebug("Fetching DynamicDetail");

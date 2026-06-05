@@ -84,12 +84,12 @@
         </main>
         
           
-        <div id='modalLogin' class="modal fade" data-bs-backdrop="static" tabindex="-1">
+        <div id='modalLogin' class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content"> 
                     <div class="modal-header">
                         <h5 class="modal-title" id='hLogin'><i class="bi-plug"></i> <span data-translate="sConnect">Connect</span></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
 					<!--Feedback and button for email supplied OTP -->
@@ -477,9 +477,9 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/js.cookie.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/sConnect.js"></script>
-        <script src="js/sConnectSimple.js"></script>
-        <script src="js/sDynamic.js"></script>
+        <script src="js/sConnect.js?v=2026.06.06"></script>
+        <script src="js/sConnectSimple.js?v=2026.06.06"></script>
+        <script src="js/sDynamic.js?v=2026.06.06"></script>
         <script>
         
         console.log(Cookies.get('s_i18n'));

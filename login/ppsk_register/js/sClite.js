@@ -3,7 +3,7 @@ var sClite = (function () {
     //Immediately returns an anonymous function which builds our modules
     return function (co) {    //co is short for config object
           
-        var h               = document.location.hostname;
+        var h               = document.location.host;
         var divFeedBack     = '#cpDivFeedback';
               
         var cDynamicData    = undefined;

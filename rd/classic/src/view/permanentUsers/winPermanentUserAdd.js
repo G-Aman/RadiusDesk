@@ -166,7 +166,7 @@ Ext.define('Rd.view.permanentUsers.winPermanentUserAdd', {
                                     width       : 350, 
                                     fieldLabel  : i18n('sLanguage'),  
                                     name        : 'language',
-                                    value       : me.selLanguage,
+                                    value       : me.selLanguage || '4_4',
                                     allowBlank  : false,
                                     labelClsExtra: 'lblRd' 
                                 },

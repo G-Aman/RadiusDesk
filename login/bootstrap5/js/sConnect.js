@@ -5,7 +5,7 @@ var sConnect = (function () {
     
         var uamIp,uamPort;  //Variables with 'global' scope
         
-        var h               = document.location.hostname;
+        var h               = document.location.host;
         var isMikroTik      = getParameterByName('link_status') != "";
         var urlUse          = location.protocol+'//'+h+'/cake4/rd_cake/radaccts/get_usage.json'
         var urlUam          = 'uam.php'
@@ -311,7 +311,7 @@ var sConnect = (function () {
             if(cDynamicData.settings.click_to_connect.cust_info_check == false){          
                 onBtnClickToConnectClick(event);       
             }else{
-                var email_check = location.protocol+'//'+document.location.hostname+"/cake4/rd_cake/data-collectors/mac-check.json";
+                var email_check = location.protocol+'//'+document.location.host+"/cake4/rd_cake/data-collectors/mac-check.json";
                 var mac_address = decodeURIComponent(getParameterByName('mac'));
                 mac_address     = mac_address.replace(/:/g, '-');
                 console.log("MAC IS "+mac_address);
@@ -669,7 +669,7 @@ var sConnect = (function () {
                 event.stopPropagation()
             }else{
             
-                var add_mac     = location.protocol+'//'+document.location.hostname+"/cake4/rd_cake/data-collectors/add-mac.json";       
+                var add_mac     = location.protocol+'//'+document.location.host+"/cake4/rd_cake/data-collectors/add-mac.json";       
                 var formData    = new FormData(document.querySelector('#frmCustInfo'))
                        
                 //===SPECIAL CHECK FOR CUSTOM FIELDS=====
@@ -852,7 +852,7 @@ var sConnect = (function () {
 			    });
 
 			    required.pathname   	= window.location.pathname;
-                required.hostname   	= window.location.hostname;
+                required.hostname   	= window.location.host;
                 required.protocol   	= window.location.protocol;
 			    required.social_login 	= 1;
 			    required.idp_name       = socialName;
@@ -1047,7 +1047,7 @@ var sConnect = (function () {
 			    });
 
 			    required.pathname   	= window.location.pathname;
-                required.hostname   	= window.location.hostname;
+                required.hostname   	= window.location.host;
                 required.protocol   	= window.location.protocol;
 			    required.social_login 	= 1;
 			    required.idp_name       = socialName;
@@ -1244,7 +1244,7 @@ var sConnect = (function () {
             
             // Check if customer info check is enabled
             if (cDynamicData && cDynamicData.settings && cDynamicData.settings.click_to_connect && cDynamicData.settings.click_to_connect.cust_info_check) {
-                var email_check = location.protocol+'//'+document.location.hostname+"/cake4/rd_cake/data-collectors/mac-check.json";
+                var email_check = location.protocol+'//'+document.location.host+"/cake4/rd_cake/data-collectors/mac-check.json";
                 var mac_address = decodeURIComponent(getParameterByName('mac'));
                 mac_address     = mac_address.replace(/:/g, '-');
                 var nasid       = getParameterByName('nasid');

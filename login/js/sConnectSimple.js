@@ -5,7 +5,7 @@ var sConnectSimple = (function () {
     
         var uamIp,uamPort;  //Variables with 'global' scope
         
-        var h               = document.location.hostname;
+        var h               = document.location.host;
         var isMikroTik      = getParameterByName('link_status') != "";
         var urlUam          = 'uam.php'
         
@@ -154,7 +154,7 @@ var sConnectSimple = (function () {
             if(cDynamicData.settings.click_to_connect.cust_info_check == false){          
                 onBtnClickToConnectClick(event);       
             }else{
-                var email_check = location.protocol+'//'+document.location.hostname+"/cake4/rd_cake/data-collectors/mac-check.json";
+                var email_check = location.protocol+'//'+document.location.host+"/cake4/rd_cake/data-collectors/mac-check.json";
                 var mac_address = decodeURIComponent(getParameterByName('mac'));
                 mac_address     = mac_address.replace(/:/g, '-');
                 console.log("MAC IS "+mac_address);
@@ -483,7 +483,7 @@ var sConnectSimple = (function () {
                 event.stopPropagation()
             }else{
             
-                var add_mac     = location.protocol+'//'+document.location.hostname+"/cake4/rd_cake/data-collectors/add-mac.json";       
+                var add_mac     = location.protocol+'//'+document.location.host+"/cake4/rd_cake/data-collectors/add-mac.json";       
                 var formData    = new FormData(document.querySelector('#frmCustInfo'))
                        
                 //===SPECIAL CHECK FOR CUSTOM FIELDS=====

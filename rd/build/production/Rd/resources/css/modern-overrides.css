@@ -1,0 +1,76 @@
+/* Import Modern Outfit Font */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* Apply Premium Typography (safe, doesn't change layout heights/spacing) */
+.x-body, .x-btn-inner, .x-form-item-label, .x-form-text, .x-grid-cell-inner, 
+.x-column-header-text, .x-panel-header-title, .x-tab-inner, .x-tree-node-text {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* Soft Drop Shadows on Windows & Floating Panels */
+.x-window {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+.x-window-header {
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Dropdowns, Menus & Boundlists (Soft shadows & borders) */
+.x-boundlist, .x-menu {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+.x-menu-item-active {
+    background-color: rgba(24, 97, 181, 0.08) !important;
+}
+
+/* Text Inputs - Smooth transitions & Focus glow rings */
+.x-form-text {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    border-radius: 4px !important;
+}
+.x-form-focus .x-form-text {
+    border-color: #1861b5 !important;
+    box-shadow: 0 0 0 3px rgba(24, 97, 181, 0.15) !important;
+}
+
+/* Buttons Hover Transition */
+.x-btn {
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+.x-btn-focus {
+    box-shadow: 0 0 0 3px rgba(24, 97, 181, 0.25) !important;
+}
+
+/* Navigation Sidebar Node Selection (Sleek capsule design) */
+.x-tree-node-hover {
+    background-color: rgba(24, 97, 181, 0.04) !important;
+    border-radius: 4px !important;
+}
+.x-tree-node-selected {
+    background-color: rgba(24, 97, 181, 0.08) !important;
+    color: #1861b5 !important;
+    font-weight: 500 !important;
+    border-radius: 4px !important;
+}
+
+/* Table Headers & Hover states (Slightly cleaner aesthetics) */
+.x-column-header {
+    background-color: #f8fafc !important;
+    border-right: 1px solid #e2e8f0 !important;
+    border-bottom: 2px solid #cbd5e1 !important;
+}
+.x-grid-item-over {
+    background-color: #f8fafc !important;
+}
+
+/* Active Tab accent line */
+.x-tab-active {
+    border-bottom: 2px solid #1861b5 !important;
+}
