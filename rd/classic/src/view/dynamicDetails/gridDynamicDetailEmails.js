@@ -67,7 +67,7 @@ Ext.define('Rd.view.dynamicDetails.gridDynamicDetailEmails' ,{
             tdCls       : 'gridTree',
             hidden      : true, 
             flex        : 1,
-            stateId		: 'DD_first_name'
+            stateId		: 'DD_last_name'
         },
         { 
             text        : 'Gender',
