@@ -9,7 +9,7 @@ localizedStrings: {
     'sSupplyYour_Mobile_Number' : 'Supply Your Mobile Number',
     'swe_will_SMS_your_credentials_to_you_fs' : 'we will SMS your credentials to you',
     'sPlease_supply_a_valid': 'Please supply a valid',
-    'sFirstName': 'First Name',
+    'sFirstName': 'Name',
     'sSurname': 'Surname',
     'sEmail': 'Email',
     'sGender': 'Gender',

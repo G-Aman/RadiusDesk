@@ -185,7 +185,7 @@ Ext.define('Rd.view.dynamicDetails.pnlDynamicDetailClickToConnect', {
                         xtype       : 'pnlDynamicDetailCustomerItem',
                         name        : 'ci_first_name',
                         stripe      : stripe,
-                        itemName    : 'First Name' 
+                        itemName    : 'Name' 
                     },
                     {
                         xtype       : 'pnlDynamicDetailCustomerItem',

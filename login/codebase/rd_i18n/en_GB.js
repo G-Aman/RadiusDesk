@@ -97,7 +97,7 @@ localizedStrings: {
     'sSign_dash_up_for_free_Internet': 'Sign-up For Guest Access',
     'sWelcome_to_free_Wi_dash_Fi_by': 'Welcome to Guest Wi-Fi by',
     'sSign_dash_up_once_to_get_Internet_access' : 'Sign-up once to get Internet access',
-    'sFirst_Name': 'First Name',
+    'sFirst_Name': 'Name',
     'sSurname': 'Surname',
     'sEmail_br_username_br':'Email (username)',
     'sThe_password_must_have_at_least_5_characters': 'The password must have at least 5 characters',

@@ -722,9 +722,10 @@ class RegisterUsersController extends AppController {
 	}
 	
 	private function _sms_otp($phone,$otp,$cloud_id,$reason){
-		// public function sendSms($phone,$message,$nr,$cloud_id,$reason='test_settings'){
-		$this->RdSms->sendSms($phone,$otp,0,$cloud_id,$reason);
-	
+		$cloud = $this->Clouds->find()->where(['Clouds.id' => $cloud_id])->first();
+		$cloud_name = $cloud ? $cloud->name : 'Hotspot';
+		$message = __("Your OTP is {0} for verification on {1}", $otp, $cloud_name);
+		$this->RdSms->sendSms($phone,$message,0,$cloud_id,$reason);
 	}
 
 }

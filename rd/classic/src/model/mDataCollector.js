@@ -10,6 +10,7 @@ Ext.define('Rd.model.mDataCollector', {
          {name: 'public_ip',    type: 'string'  },
          {name: 'nasid',       type: 'string'  },
          {name: 'ssid',         type: 'string'  },
+         {name: 'first_name',   type: 'string'  },
          {name: 'is_mobile',    type: 'bool'    },
          {name: 'created',           type: 'date'},
          {name: 'modified',          type: 'date'},

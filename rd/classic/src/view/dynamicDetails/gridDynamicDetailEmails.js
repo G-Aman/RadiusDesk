@@ -54,7 +54,7 @@ Ext.define('Rd.view.dynamicDetails.gridDynamicDetailEmails' ,{
             stateId		: 'DD_Email_E'
         },
         { 
-            text        : 'First Name',
+            text        : 'Name',
             dataIndex   : 'first_name', 
             tdCls       : 'gridTree',
             hidden      : true, 
