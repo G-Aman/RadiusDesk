@@ -463,7 +463,7 @@ class RadacctsController extends AppController {
         if ($extra_info) {
             $macs = [];
             foreach ($q_r as $i) {
-                if (!$i->permanent_user && $i->callingstationid) {
+                if ($i->callingstationid && (!$i->permanent_user || empty($i->permanent_user->extra_name))) {
                     $macs[] = $i->callingstationid;
                 }
             }
@@ -498,10 +498,14 @@ class RadacctsController extends AppController {
                 $i->pu_site     = $i->permanent_user->site;
                 $i->pu_extra_name = $i->permanent_user->extra_name;
                 $i->pu_extra_value = $i->permanent_user->extra_value;
-            } elseif ($extra_info && isset($dcs[$i->callingstationid])) {
-                $dc = $dcs[$i->callingstationid];
-                $i->pu_extra_name = $dc->first_name;
-                $i->pu_extra_value = $dc->email . ($dc->phone ? ' (' . $dc->phone . ')' : '');
+            }
+            
+            if ($extra_info && isset($dcs[$i->callingstationid])) {
+                if (!$i->permanent_user || empty($i->permanent_user->extra_name)) {
+                    $dc = $dcs[$i->callingstationid];
+                    $i->pu_extra_name = $dc->first_name;
+                    $i->pu_extra_value = $dc->email . ($dc->phone ? ' (' . $dc->phone . ')' : '');
+                }
             }
                                           
             array_push($items,$i);
