@@ -395,6 +395,11 @@ class RadacctsController extends AppController {
 
         $user_id        = $user['id'];         
         $only_connected = $this->request->getQuery('only_connected');
+        
+        $extra_info     = false;
+        if ($this->request->getQuery('extra_info') == 'true') {
+            $extra_info = true;
+        }
        
         if($only_connected == 'false'){
             $this->workingModel = 'RadacctHistories';
@@ -454,6 +459,23 @@ class RadacctsController extends AppController {
         }
 
         $items  = [];
+        $dcs    = [];
+        if ($extra_info) {
+            $macs = [];
+            foreach ($q_r as $i) {
+                if (!$i->permanent_user && $i->callingstationid) {
+                    $macs[] = $i->callingstationid;
+                }
+            }
+            if (!empty($macs)) {
+                $this->loadModel('DataCollectors');
+                $dc_records = $this->DataCollectors->find()->where(['mac IN' => $macs])->all();
+                foreach ($dc_records as $dc) {
+                    $dcs[$dc->mac] = $dc;
+                }
+            }
+        }
+
         foreach($q_r as $i){
               
             $i->user_type     = 'unknown';
@@ -472,11 +494,14 @@ class RadacctsController extends AppController {
             $i->acctstoptime    = $online_time;
             
             if($i->permanent_user){
-            
                 $i->pu_active   = $i->permanent_user->active;
                 $i->pu_site     = $i->permanent_user->site;
                 $i->pu_extra_name = $i->permanent_user->extra_name;
                 $i->pu_extra_value = $i->permanent_user->extra_value;
+            } elseif ($extra_info && isset($dcs[$i->callingstationid])) {
+                $dc = $dcs[$i->callingstationid];
+                $i->pu_extra_name = $dc->first_name;
+                $i->pu_extra_value = $dc->email . ($dc->phone ? ' (' . $dc->phone . ')' : '');
             }
                                           
             array_push($items,$i);

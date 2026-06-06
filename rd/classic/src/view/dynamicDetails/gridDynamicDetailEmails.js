@@ -17,10 +17,26 @@ Ext.define('Rd.view.dynamicDetails.gridDynamicDetailEmails' ,{
     },
     urlMenu: '/cake4/rd_cake/dynamic-details/menu-for-dynamic-emails.json',
     columns: [
+        { 
+            text        : 'Name',
+            dataIndex   : 'first_name', 
+            tdCls       : 'gridTree',
+            hidden      : false, 
+            flex        : 1,
+            stateId		: 'DD_first_name'
+        },
+        { text: 'Phone',          dataIndex: 'phone',    tdCls: 'gridTree', hidden: false, flex: 1,stateId: 'StateGridDynamicDetailEmails2a'},
+        { text: 'E-Mail',         dataIndex: 'email',    tdCls: 'gridTree', hidden: false, flex: 1,stateId: 'StateGridDynamicDetailEmails2'},
+        { text: 'MAC Address',    dataIndex: 'mac',      tdCls: 'gridMain', hidden: false, flex: 1,stateId: 'StateGridDynamicDetailEmails1'},
+        { 
+            text        : 'Public IP',
+            dataIndex   : 'public_ip', 
+            tdCls       : 'gridTree',
+            hidden      : false, 
+            flex        : 1,
+            stateId		: 'DD_Email_C'
+        },
         { text: 'DynamicDetail',  dataIndex: 'dynamic_detail_name',  hidden: true, tdCls: 'gridTree', flex: 1,stateId: 'DD_Email_A'},
-        { text: 'MAC Address',    dataIndex: 'mac',      tdCls: 'gridMain', flex: 1,stateId: 'StateGridDynamicDetailEmails1'},
-        { text: 'E-Mail',         dataIndex: 'email',    tdCls: 'gridTree', flex: 1,stateId: 'StateGridDynamicDetailEmails2'},
-        { text: 'Phone',          dataIndex: 'phone',    tdCls: 'gridTree', flex: 1,stateId: 'StateGridDynamicDetailEmails2a'},
         { 
             text        : 'Captive MAC',
             dataIndex   : 'cp_mac', 
@@ -28,14 +44,6 @@ Ext.define('Rd.view.dynamicDetails.gridDynamicDetailEmails' ,{
             hidden      : true, 
             flex        : 1,
             stateId		: 'DD_Email_B'
-        },
-        { 
-            text        : 'Public IP',
-            dataIndex   : 'public_ip', 
-            tdCls       : 'gridTree',
-            hidden      : true, 
-            flex        : 1,
-            stateId		: 'DD_Email_C'
         },
         { 
             text        : 'NAS ID',
@@ -52,14 +60,6 @@ Ext.define('Rd.view.dynamicDetails.gridDynamicDetailEmails' ,{
             hidden      : true, 
             flex        : 1,
             stateId		: 'DD_Email_E'
-        },
-        { 
-            text        : 'Name',
-            dataIndex   : 'first_name', 
-            tdCls       : 'gridTree',
-            hidden      : true, 
-            flex        : 1,
-            stateId		: 'DD_first_name'
         },
         { 
             text        : 'Last Name',
@@ -205,7 +205,7 @@ Ext.define('Rd.view.dynamicDetails.gridDynamicDetailEmails' ,{
             text        : 'Modified',
             dataIndex   : 'modified', 
             tdCls       : 'gridTree',
-            hidden      : false, 
+            hidden      : true, 
             xtype       : 'templatecolumn', 
             tpl         : new Ext.XTemplate(
                 "<div class=\"fieldBlue\">{modified_in_words}</div>"
