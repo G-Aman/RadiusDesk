@@ -127,20 +127,34 @@ Ext.define('Rd.controller.cActivityMonitor', {
             only_connected = btn.pressed; //Default only active
             if(btn.pressed){
                btn.setGlyph(Rd.config.icnLightbulb);
-               info.enable();               
             }else{
                 btn.setGlyph(Rd.config.icnTime); 
-                info.setPressed(false); //release it only here
-                info.disable();
-                me.getGrid().down('#clmPuExtraValue').disable();
-                me.getGrid().down('#clmPuExtraName').disable();
-                me.getGrid().down('#clmPuSite').disable();
-                me.getGrid().down('#clmPuActive').disable(); 
             }
         }
         
         if(info){
             extra_info = info.pressed; //Default only active
+        }
+        
+        // Ensure column visibility matches extra_info state
+        if (extra_info) {
+            me.getGrid().down('#clmPuExtraValue').enable();
+            me.getGrid().down('#clmPuExtraValue').show();
+            me.getGrid().down('#clmPuExtraName').enable();
+            me.getGrid().down('#clmPuExtraName').show();
+            me.getGrid().down('#clmPuSite').enable();
+            me.getGrid().down('#clmPuSite').show();
+            me.getGrid().down('#clmPuActive').enable();
+            me.getGrid().down('#clmPuActive').show();
+        } else {
+            me.getGrid().down('#clmPuExtraValue').hide();
+            me.getGrid().down('#clmPuExtraValue').disable();
+            me.getGrid().down('#clmPuExtraName').hide();
+            me.getGrid().down('#clmPuExtraName').disable();
+            me.getGrid().down('#clmPuSite').hide();
+            me.getGrid().down('#clmPuSite').disable();
+            me.getGrid().down('#clmPuActive').hide();
+            me.getGrid().down('#clmPuActive').disable(); 
         }
                    
         var timezone_id = null;
@@ -152,7 +166,7 @@ Ext.define('Rd.controller.cActivityMonitor', {
                 timezone_id = dd.user.timezone_id;
             }
         }
-                   
+                    
         me.getStore('sRadaccts').getProxy().setExtraParam('only_connected', only_connected);
         me.getStore('sRadaccts').getProxy().setExtraParam('timezone_id',timezone_id);
         me.getStore('sRadaccts').getProxy().setExtraParam('extra_info',extra_info);
@@ -164,14 +178,22 @@ Ext.define('Rd.controller.cActivityMonitor', {
         if(btn.pressed){
             console.log("Info Button Pressed");
             me.getGrid().down('#clmPuExtraValue').enable();
+            me.getGrid().down('#clmPuExtraValue').show();
             me.getGrid().down('#clmPuExtraName').enable();
+            me.getGrid().down('#clmPuExtraName').show();
             me.getGrid().down('#clmPuSite').enable();
+            me.getGrid().down('#clmPuSite').show();
             me.getGrid().down('#clmPuActive').enable();
+            me.getGrid().down('#clmPuActive').show();
         }else{
             console.log("Info Button Released");  
+            me.getGrid().down('#clmPuExtraValue').hide();
             me.getGrid().down('#clmPuExtraValue').disable();
+            me.getGrid().down('#clmPuExtraName').hide();
             me.getGrid().down('#clmPuExtraName').disable();
+            me.getGrid().down('#clmPuSite').hide();
             me.getGrid().down('#clmPuSite').disable();
+            me.getGrid().down('#clmPuActive').hide();
             me.getGrid().down('#clmPuActive').disable(); 
         }
         me.reload();  
