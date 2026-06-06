@@ -25,7 +25,7 @@ Ext.define('Rd.view.dynamicDetails.pnlDynamicDetailCustomerItem', {
                 xtype       : 'checkbox',      
                 fieldLabel  : me.itemName,
                 name        : me.name,
-                inputValue  : 'cust_info_check',
+                inputValue  : 1,
                 checked     : false,
                 labelClsExtra: 'lblRdReq',
                 disabled    : true,

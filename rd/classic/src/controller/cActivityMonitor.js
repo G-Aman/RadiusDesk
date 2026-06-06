@@ -80,14 +80,7 @@ Ext.define('Rd.controller.cActivityMonitor', {
                 click:      me.closeOpen
             },
             'gridRadaccts'   : {
-              //  select:      me.select
-            },
-            'gridRadaccts'   : {
-              //  activate:      me.reload
-            },
-            'gridRadaccts #cmbTimezone': {
-                afterrender : me.reload,
-                change      : me.reload
+                afterrender:      me.reload
             },
             'gridRadpostauths #reload': {
                 click:      me.reloadPostAuths
@@ -150,8 +143,18 @@ Ext.define('Rd.controller.cActivityMonitor', {
             extra_info = info.pressed; //Default only active
         }
                    
+        var timezone_id = null;
+        if(tz){
+            timezone_id = tz.getValue();
+        }else{
+            var dd = Ext.getApplication().getDashboardData();
+            if(dd && dd.user && dd.user.timezone_id){
+                timezone_id = dd.user.timezone_id;
+            }
+        }
+                   
         me.getStore('sRadaccts').getProxy().setExtraParam('only_connected', only_connected);
-        me.getStore('sRadaccts').getProxy().setExtraParam('timezone_id',tz.getValue());
+        me.getStore('sRadaccts').getProxy().setExtraParam('timezone_id',timezone_id);
         me.getStore('sRadaccts').getProxy().setExtraParam('extra_info',extra_info);
         me.getStore('sRadaccts').reload();
     },

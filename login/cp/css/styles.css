@@ -243,3 +243,29 @@ div.webix_item_tab, .webix_item_tab .webix_icon {
     padding-top: 20px;
     text-align: center;
 } 
+
+/* ==========================================================================
+   Premium Webix Apple/Material overrides for Captive Portal
+   ========================================================================== */
+.webix_view input, .webix_list_item {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.webix_el_htmlbutton {
+    border-radius: 10px !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-weight: 600 !important;
+    transition: all 0.15s ease !important;
+}
+
+.webix_view input {
+    border-radius: 10px !important;
+    border: 1px solid #cbd5e1 !important;
+    background-color: #f8fafc !important;
+    transition: all 0.15s ease !important;
+}
+
+.webix_view input:focus {
+    border-color: #1861b5 !important;
+    background-color: #ffffff !important;
+}

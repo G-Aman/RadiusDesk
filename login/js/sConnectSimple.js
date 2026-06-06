@@ -184,11 +184,11 @@ var sConnectSimple = (function () {
         }
         
         var showCustInfo = function(){       
-            $("#myModal").modal('hide');      
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLogin')).hide();      
             if(!$("#pnlCustInfo").data('populate')){
                 populateCustInfo();
             }
-            $("#modalCustInfo").modal('show');         
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('modalCustInfo')).show();         
         }
         
         var populateCustInfo = function(){
@@ -561,8 +561,8 @@ var sConnectSimple = (function () {
                 $.ajax({url: add_mac, method: "POST", dataType: "json",timeout: 3000,data: formData,processData: false,contentType: false})
                 .done(function(j){
                     if(j.success == true){ 
-                        $("#modalCustInfo").modal('hide');           
-                        $("#myModal").modal('show');
+                        bootstrap.Modal.getOrCreateInstance(document.getElementById('modalCustInfo')).hide();           
+                        bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLogin')).show();
                         onBtnClickToConnectClick(event); 
                     }else{
                         console.log("PROBLEMS POSTING INFO FOR MAC");
@@ -638,6 +638,10 @@ var sConnectSimple = (function () {
         }
                 
         var onBtnDisconnectClick = function(){
+            if (typeof uamIp === 'undefined' || typeof uamPort === 'undefined') {
+                fShowError(i18n('sPlease_connect_through_a_valid_Hotspot'));
+                return;
+            }
 	        $('#btnDisconnect').button('loading');
 		    fDebug('Disconnect the user');		    
 		    window.location = 'http://'+uamIp+':'+uamPort+'/logoff'		    
@@ -675,6 +679,11 @@ var sConnectSimple = (function () {
         }
       
         var login = function (encPwd) {       
+            if (typeof uamIp === 'undefined' || typeof uamPort === 'undefined') {
+                fShowError(i18n('sPlease_connect_through_a_valid_Hotspot'));
+                loadingReset();
+                return;
+            }
             var data = 'username='+userName+'&password='+encPwd;
             if(useCHAP == true){
                 data = 'username='+userName+'&response='+encPwd;
@@ -883,8 +892,8 @@ var sConnectSimple = (function () {
         }
         
         var onRegisterClick = function(){
-            $("#myModal").modal('hide');
-            $("#modalRegister").modal('show');
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLogin')).hide();
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('modalRegister')).show();
             if(!$("#divRegister").data('populate')){
                 populateRegister();
             }   
@@ -961,8 +970,8 @@ var sConnectSimple = (function () {
                         $("#txtUsername").val(r_username);
                         $("#txtPassword").val(r_password);
                         //Hide reg / show login
-                        $("#modalRegister").modal('hide');
-                        $("#myModal").modal('show');               
+                        bootstrap.Modal.getOrCreateInstance(document.getElementById('modalRegister')).hide();
+                        bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLogin')).show();               
                     }else{
                         if(data.errors !== undefined){
                             msg = '';
@@ -980,15 +989,15 @@ var sConnectSimple = (function () {
         }
                
         var onLostPasswordClick = function(){          
-            $("#myModal").modal('hide');
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLogin')).hide();
             if(cDynamicData.settings.lost_password_method == 'sms'){
-                $("#modalLostPwdSms").modal('show');
+                bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLostPwdSms')).show();
                 if(!$("#pnlLostPwdSms").data('populate')){
                     populateLostPwdSms();
                 }      
             }          
             if(cDynamicData.settings.lost_password_method == 'email'){
-                $("#modalLostPwd").modal('show');
+                bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLostPwd')).show();
                 if(!$("#pnlLostPwd").data('populate')){
                     populateLostPwd();
                 }  
@@ -1053,8 +1062,8 @@ var sConnectSimple = (function () {
                     $('#btnLostPwd').button('reset');
                     if(data.success){
                         //Hide reg / show login
-                        $("#modalLostPwd").modal('hide');
-                        $("#myModal").modal('show');             
+                        bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLostPwd')).hide();
+                        bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLogin')).show();             
                     }else{
                         $('#alertWarnLostPwd').html(data.message);
                         $('#alertWarnLostPwd').addClass('show');
@@ -1091,8 +1100,8 @@ var sConnectSimple = (function () {
                         $('#btnLostPwdSms').button('reset'); 
                         if(data.success){
                             //Hide reg / show login
-                            $("#modalLostPwdSms").modal('hide');
-                            $("#myModal").modal('show');             
+                            bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLostPwdSms')).hide();
+                            bootstrap.Modal.getOrCreateInstance(document.getElementById('modalLogin')).show();             
                         }else{
                             $('#alertWarnLostPwdSms').html(data.message);
                             $('#alertWarnLostPwdSms').addClass('show');

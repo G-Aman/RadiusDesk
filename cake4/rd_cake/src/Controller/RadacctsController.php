@@ -688,7 +688,7 @@ class RadacctsController extends AppController {
                         //'pressed'       => false,
                         
                         //To list only active
-                        'glyph'         => Configure::read('icnLight'),
+                        'glyph'         => Configure::read('icnLightbulb'),
                         'pressed'       => true,
                                 
                         'scale'         => $scale,
@@ -697,19 +697,6 @@ class RadacctsController extends AppController {
                          
                         'ui'            => 'button-green',  
                         'tooltip'       => __('Show only currently connected')
-                ],
-                [
-                    'xtype' => 'tbseparator'
-                ],
-                [
-                    'xtype'         => 'cmbTimezones', 
-                    'width'         => 200, 
-                    'itemId'        => 'cmbTimezone',
-                    'name'          => 'timezone_id', 
-                    'fieldLabel'    => '',
-                    'padding'       => '7 0 0 0',
-                    'margin'        => 0,
-                    'value'         => $timezone_id
                 ],
                 [
                     'xtype' => 'tbseparator'

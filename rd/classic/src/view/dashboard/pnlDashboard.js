@@ -107,12 +107,27 @@ Ext.define('Rd.view.dashboard.pnlDashboard', {
             scale   : 'medium',
             hidden  : true
         };
+        var cmbCloud = {
+            xtype	    : 'cmbClouds',
+            itemId      : 'cmbCloud',
+            width       : 280,
+            fieldLabel  : ''
+        };
+
         var h3 = {
             xtype   : 'button',
             glyph   : Rd.config.icnUser,
             text    : username,
             scale   : 'medium',
             menu    : [
+                {
+                    text: 'Select Cloud',
+                    glyph: 'xf0c2@FontAwesome',
+                    menu: [
+                        cmbCloud
+                    ]
+                },
+                {   text: 'Setup Wizard',      glyph : 'xf0d0@FontAwesome', itemId: 'btnSetupWizard'},
                 {   text:i18n('sSettings'),    glyph : Rd.config.icnSpanner,itemId: 'mnuSettings'},
                 {   text:i18n('sPassword'),    glyph : Rd.config.icnLock,   itemId: 'mnuPassword'},'-',
                 {   text:i18n('sLogout'),      glyph : Rd.config.icnPower,  itemId: 'mnuLogout'}
@@ -123,29 +138,11 @@ Ext.define('Rd.view.dashboard.pnlDashboard', {
         if(username.length > 10){
             h3.width = 150;
         }
-
-        var h2 = {
-            xtype   : 'button',
-            itemId	: 'btnTreeLoad',
-            glyph   : Rd.config.icnWizard,
-            itemId  : 'btnSetupWizard',
-            scale   : 'medium'
-        };
-      	
-      	var cmbCloud = {
-        	xtype	    : 'cmbClouds',
-        	itemId      : 'cmbCloud',
-        	width       : 380,
-            labelWidth  : 30,
-            userCls     : 'rdCombo',
-         //   labelClsExtra   : 'lblRd',
-            fieldLabel  : '<span style="font-family:FontAwesome;font-size: 24px;">&#xf0c2</span>'
-        }
         
-        var h_items = [ h1_top, txtH,'->',cmbCloud,'|',h2,'|',h3];
+        var h_items = [ h1_top, txtH,'->',h3];
         
         if(me.dashboard_data.show_wizard){
-            h_items = [ h1_top, txtH,'->',cmbCloud,'|',h2,'|',h3];
+            h_items = [ h1_top, txtH,'->',h3];
         }
                
      	me.items 	= [

@@ -63,13 +63,13 @@ Ext.define('Rd.controller.cDashboard', {
             'pnlDashboard #pnlWest' : {
                 afterrender     : me.pnlWestRendered
             },
-            'pnlDashboard #cmbCloud' : {
+            '#cmbCloud' : {
 		    	select: me.onCloudSelect
 		    },
-            'pnlDashboard  #mnuLogout' : {
+            '#mnuLogout' : {
 		        click   : me.onLogout
 		    },
-		    'pnlDashboard  #mnuSettings' : {
+		    '#mnuSettings' : {
 		        click   : me.onSettings
 		    },
 		    'winDashboardSettings #save': {
@@ -78,13 +78,13 @@ Ext.define('Rd.controller.cDashboard', {
             'winDashboardSettings': {
                 beforeshow:      me.loadSettings
             },
-		    'pnlDashboard  #mnuPassword' : {
+		    '#mnuPassword' : {
 		        click   : me.onPassword
 		    },
 		    'winPasswordChanger #save': {
                 'click' : me.onChangePassword
             },
-            'pnlDashboard  #btnSetupWizard' : {
+            '#btnSetupWizard' : {
 		        click   : function(btn){
                     Ext.getApplication().runAction('cSetupWizard','Index');
                 } 
@@ -431,10 +431,14 @@ Ext.define('Rd.controller.cDashboard', {
             Ext.getApplication().runAction('cSetupWizard','Index') 
         }else{
             if(dd.user.cloud_id){
-                var cmbCloud = me.getViewP().down('cmbClouds');
-                cmbCloud.select(dd.user.cloud_id);
+                var cmbCloud = Ext.ComponentQuery.query('cmbClouds')[0];
+                if (cmbCloud) {
+                    cmbCloud.select(dd.user.cloud_id);
+                }
                 Ext.getApplication().setCloudName(dd.user.cloud_name); //We set it here initially
-                me.onCloudSelect(cmbCloud);
+                if (cmbCloud) {
+                    me.onCloudSelect(cmbCloud);
+                }
             }           
         }
     }

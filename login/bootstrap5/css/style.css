@@ -81,3 +81,183 @@ user-select: none;
         transform: rotate(360deg);
     }
 } 
+/* ==========================================================================
+   Premium Apple & Material Minimalist Overrides for Captive Portal
+   ========================================================================== */
+
+/* Modern Typography */
+body, .modal-title, .form-control, .btn, .alert, .navbar, footer {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Page Background and Layout Styling */
+body {
+    background-color: #0f172a !important; /* Premium Dark Background */
+}
+
+/* Navigation Bar updates */
+.navbar {
+    background-color: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 12px 0 !important;
+}
+
+.navbar-brand {
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    color: #ffffff !important;
+}
+
+.nav-link {
+    font-weight: 500 !important;
+    color: #94a3b8 !important;
+    transition: color 0.15s ease !important;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #ffffff !important;
+}
+
+/* Apple-style Modals (Glassmorphism & Soft Drop Shadows) */
+.modal-content {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    padding: 16px !important;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    padding: 16px 20px !important;
+}
+
+.modal-header .modal-title {
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    letter-spacing: -0.02em !important;
+    font-size: 1.25rem !important;
+}
+
+.modal-body {
+    padding: 20px !important;
+}
+
+/* Material & Apple Styled Form Fields */
+.form-control {
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+    font-size: 0.95rem !important;
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+.form-control::placeholder {
+    color: #94a3b8 !important;
+}
+
+.form-control:focus {
+    border-color: #1861b5 !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(24, 97, 181, 0.15) !important;
+    outline: none !important;
+}
+
+/* Input groups / borders for custom styles */
+.mb-3 {
+    margin-bottom: 1.25rem !important;
+}
+
+.mb-3.p-1.bg-secondary.border {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Rounded Buttons with Apple-like smooth transitions */
+.btn {
+    border-radius: 10px !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: -0.01em !important;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-primary, .btn-block {
+    background-color: #1861b5 !important;
+    border-color: #1861b5 !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #14529b !important;
+    border-color: #14529b !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(24, 97, 181, 0.2) !important;
+}
+
+.btn-secondary {
+    background-color: #f1f5f9 !important;
+    border-color: #e2e8f0 !important;
+    color: #475569 !important;
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8f0 !important;
+    color: #334155 !important;
+}
+
+/* Premium Apple-style Circular Spinner/Loader */
+.loader {
+    width: 48px !important;
+    height: 48px !important;
+    border: 3px solid rgba(255, 255, 255, 0.15) !important;
+    border-bottom-color: #1861b5 !important;
+    border-radius: 50% !important;
+    animation: rotation 0.8s cubic-bezier(0.5, 0, 0.5, 1) infinite !important;
+}
+
+/* Modernized Alert Boxes */
+.alert {
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 14px 18px !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+}
+
+.alert-info {
+    background-color: rgba(24, 97, 181, 0.08) !important;
+    color: #1861b5 !important;
+}
+
+.alert-warning {
+    background-color: #fffbeb !important;
+    color: #b45309 !important;
+}
+
+.alert-success {
+    background-color: #f0fdf4 !important;
+    color: #166534 !important;
+}
+
+.alert-danger {
+    background-color: #fef2f2 !important;
+    color: #991b1b !important;
+}
+
+/* Footer updates */
+footer {
+    background-color: #0f172a !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 20px 0 !important;
+    color: #64748b !important;
+}
