@@ -5,6 +5,7 @@ on:
     branches:
       - dev
       - main
+      - cake4
 
 jobs:
   build-and-push:
@@ -25,6 +26,8 @@ jobs:
         run: |
           if [ "${{ github.ref_name }}" = "main" ]; then
             echo "IMAGE_TAG=latest" >> $GITHUB_ENV
+          elif [ "${{ github.ref_name }}" = "cake4" ]; then
+            echo "IMAGE_TAG=cake4" >> $GITHUB_ENV
           else
             echo "IMAGE_TAG=dev" >> $GITHUB_ENV
           fi
