@@ -41,7 +41,9 @@ class GridButtonsRbaComponent extends Component {
         if($ctrl_name == 'RbaPermanentUsers'){     
             return [
                 $this->_fetchPuBasic($allowedActions),
+                [ 'xtype' => 'tbseparator'],
                 $this->_fetchPuCsvUpDown($allowedActions),
+                [ 'xtype' => 'tbseparator'],
                 $this->_fetchPuExtras($allowedActions),
             ];
         }
@@ -61,7 +63,9 @@ class GridButtonsRbaComponent extends Component {
         if($ctrl_name == 'RbaRealms'){     
             return [
                 $this->_fetchRealmsBasic($allowedActions),
+                [ 'xtype' => 'tbseparator'],
                 $this->_fetchRealmsCsvDown($allowedActions),
+                [ 'xtype' => 'tbseparator'],
                 $this->_fetchRealmsOther($allowedActions)               
             ];
         }
@@ -69,6 +73,7 @@ class GridButtonsRbaComponent extends Component {
         if($ctrl_name == 'RbaNas'){     
             return [
                 $this->_fetchNasBasic($allowedActions),
+                [ 'xtype' => 'tbseparator'],
                 $this->_fetchNasOther($allowedActions)               
             ];
         }
@@ -76,12 +81,47 @@ class GridButtonsRbaComponent extends Component {
         if($ctrl_name == 'RbaRadaccts'){     
             return [
                 $this->_fetchRadacctsBasic($allowedActions),
+                [ 'xtype' => 'tbseparator'],
                 $this->_fetchRadacctsCsvDown($allowedActions),
+                [ 'xtype' => 'tbseparator'],
                 $this->_fetchRadacctsKickClose($allowedActions),
+                [ 'xtype' => 'tbseparator'],
+                
+                
                 [
                     'xtype'   => 'component', 
                     'itemId'  => 'totals',  
-                     'tpl'    => [
+                     'tpl' => [
+                            '<div class="radacct-stats">',
+
+                                '<tpl if="activeData == true">',
+                                    '<div class="stat-item">',
+                                        '<i class="fa fa-arrow-down"></i>',
+                                        '<span class="value">{in}</span>',
+                                        '<span class="label">In</span>',
+                                    '</div>',
+
+                                    '<div class="stat-item">',
+                                        '<i class="fa fa-arrow-up"></i>',
+                                        '<span class="value">{out}</span>',
+                                        '<span class="label">Out</span>',
+                                    '</div>',
+
+                                    '<div class="stat-item">',
+                                        "<span class='fa' style='font-family:FontAwesome;'>&#xf0ec</span>",
+                                        '<span class="value">{total}</span>',
+                                        '<span class="label">Total</span>',
+                                    '</div>',
+                                '</tpl>',
+                                '<div class="stat-item">',
+                                    '<i class="fa fa-users"></i>',
+                                    '<span class="value">{total_connected}</span>',
+                                    '<span class="label">Sessions</span>',
+                                '</div>',
+
+                            '</div>'
+                     
+                     /*
                         "<div style='font-size:larger;width:400px;'>",
                         "<ul class='fa-ul'>",
                         "<tpl if='activeData == true'>",
@@ -90,7 +130,7 @@ class GridButtonsRbaComponent extends Component {
                         "</tpl>",
                         "<li style='padding:2px;'><i class='fa-li fa fa-arrow-right'></i> {total_connected} items</li>",
                         "</ul>",
-                        "</div>"                    
+                        "</div>"   */                 
                     ],
                     'data'   =>  [],
                     'cls'    => 'lblRd'
@@ -131,7 +171,14 @@ class GridButtonsRbaComponent extends Component {
             array_push($items,$this->GridButtonsBase->btnEdit);      
         }
                 
-        $menu = ['xtype' => 'buttongroup','title' => null, 'items' => $items ];
+        $menu = [
+            'xtype' => 'buttongroup',
+            'title' => null,
+            'border' => false,
+            'bodyBorder' => false,
+            'frame' => false, 
+            'items' => $items 
+        ];
                  
         return $menu;
     }
@@ -203,7 +250,10 @@ class GridButtonsRbaComponent extends Component {
          if(count($items)>0){
             $menu = [
                 'xtype' => 'buttongroup',
-                'title' => null, 
+                'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false, 
                 'items' => $items
             ];  
         }     
@@ -234,7 +284,10 @@ class GridButtonsRbaComponent extends Component {
         if(count($items)>0){
             $menu = [
                 'xtype' => 'buttongroup',
-                'title' => null, 
+                'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false,
                 'width' => 110,
                 'items' => $items
             ];  
@@ -272,9 +325,11 @@ class GridButtonsRbaComponent extends Component {
                 $this->GridButtonsBase->btnReload,
                 $this->GridButtonsBase->btnAdd,
                 $this->GridButtonsBase->btnDelete,
+                [ 'xtype' => 'tbseparator'],
 			    $this->GridButtonsBase->btnSimpleEdit,
 			    $this->GridButtonsBase->btnFupEdit,
 			    $this->GridButtonsBase->btnAdvEdit,
+			    [ 'xtype' => 'tbseparator'],
 			    $this->GridButtonsBase->btnProfComp
             ];          
         } 
@@ -303,7 +358,10 @@ class GridButtonsRbaComponent extends Component {
         if(count($items)>0){
             $menu = [
                 'xtype' => 'buttongroup',
-                'title' => null, 
+                'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false,  
                 'items' => $items
             ];  
         }     
@@ -348,7 +406,10 @@ class GridButtonsRbaComponent extends Component {
         if(count($items)>0){
             $menu = [
                 'xtype' => 'buttongroup',
-                'title' => null, 
+                'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false,  
                 'items' => $items
             ];  
         }     
@@ -391,7 +452,10 @@ class GridButtonsRbaComponent extends Component {
         if(count($items)>0){
             $menu = [
                 'xtype' => 'buttongroup',
-                'title' => null, 
+                'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false,  
                 'items' => $items
             ];  
         }     
@@ -417,7 +481,10 @@ class GridButtonsRbaComponent extends Component {
         if(count($items)>0){
             $menu = [
                 'xtype' => 'buttongroup',
-                'title' => null, 
+                'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false, 
                 'width' => 60,
                 'items' => $items
             ];  
@@ -490,7 +557,10 @@ class GridButtonsRbaComponent extends Component {
         if(count($items)>0){
             $menu = [
                 'xtype' => 'buttongroup',
-                'title' => null, 
+                'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false, 
                 'items' => $items
             ];  
         }     
@@ -534,7 +604,10 @@ class GridButtonsRbaComponent extends Component {
         if(count($items)>0){
             $menu = [
                 'xtype' => 'buttongroup',
-                'title' => null, 
+                'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false,  
                 'items' => $items
             ];  
         }     
@@ -559,7 +632,10 @@ class GridButtonsRbaComponent extends Component {
         if(count($items)>0){
             $menu = [
                 'xtype' => 'buttongroup',
-                'title' => null, 
+                'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false,  
                 'items' => $items
             ];  
         }     
@@ -572,7 +648,10 @@ class GridButtonsRbaComponent extends Component {
     private function _fetchRadacctsBasic($allowedActions){    
         $menu   = [
             'xtype' => 'buttongroup',
-            'title' => null, 
+            'title' => null,
+            'border' => false,
+            'bodyBorder' => false,
+            'frame' => false, 
             'items' => [
                 $this->GridButtonsBase->btnReloadTimer,
                 [
@@ -643,6 +722,9 @@ class GridButtonsRbaComponent extends Component {
             $menu = [
                 'xtype' => 'buttongroup',
                 'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false, 
                 'items' => $items
             ];  
         }     
@@ -671,6 +753,9 @@ class GridButtonsRbaComponent extends Component {
             $menu = [
                 'xtype' => 'buttongroup',
                 'title' => null,
+                'border' => false,
+                'bodyBorder' => false,
+                'frame' => false, 
                 'items' => $items
             ];  
         }     

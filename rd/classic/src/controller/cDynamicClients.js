@@ -138,12 +138,17 @@ Ext.define('Rd.controller.cDynamicClients', {
             'gridDynamicClients #unknown_clients'   : {
                 click:      me.unknown_clients
             },
-            
-            'gridDynamicClients'   		: {
-                select:      me.select
-            },
             'gridDynamicClients actioncolumn': { 
                  itemClick  : me.onActionColumnItemClick
+            },
+            'gridDynamicClients' : {
+                select      : me.select,
+                cellclick   : function (grid, td, cellIndex, record, tr, rowIndex, e) {
+                    if (e.getTarget('.grid-link')) {
+                        e.stopEvent();
+                        me.viewLink(record.get('id'));
+                    }
+                }
             },
             'winDynamicClientAdd #btnDataNext' : {
                 click:  me.btnDataNext
@@ -718,7 +723,10 @@ Ext.define('Rd.controller.cDynamicClients', {
             });
         }
     },
-      
+    viewLink: function(id) {
+        const me    = this;
+        me.graph();
+    },    
     graph: function(button){
         var me = this;  
         //Find out if there was something selected

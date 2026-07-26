@@ -84,8 +84,7 @@ Ext.define('Rd.controller.cRealms', {
             },
             'gridRealms #edit': {
                 click:      me.edit
-            },
-          
+            },          
             'gridRealms #csv'  : {
                 click:      me.csvExport
             },
@@ -104,12 +103,18 @@ Ext.define('Rd.controller.cRealms', {
             'gridRealms #passpoint'   : {
                 click:      me.passpoint
             },
-            'gridRealms'   : {
-                itemclick       :  me.gridClick,
-                menuItemClick   : me.onActionColumnMenuItemClick 
-            },
             'gridRealms actioncolumn': { 
                  itemClick  : me.onActionColumnItemClick
+            },
+            'gridRealms' : {
+                itemclick       :  me.gridClick,
+                menuItemClick   : me.onActionColumnMenuItemClick,
+                cellclick       : function (grid, td, cellIndex, record, tr, rowIndex, e) {
+                    if (e.getTarget('.grid-link')) {
+                        e.stopEvent();
+                        me.viewLink(record.get('id'));
+                    }
+                }
             },
             'winRealmAdd #btnDataNext' : {
                 click:  me.addSubmit
@@ -493,6 +498,10 @@ Ext.define('Rd.controller.cRealms', {
         var form    = button.up('form');
         form.getForm().reset();
     },
+    viewLink: function(id) {
+        const me    = this;
+        me.graph();
+    },  
     graph: function(){
         var me = this;  
         //Find out if there was something selected
