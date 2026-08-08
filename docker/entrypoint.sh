@@ -78,12 +78,31 @@ for var in $(env | cut -d= -f1 | grep -E '^(PHP_|PHP\.)'); do
     vars_to_unset+=("$var")
 done
 
-# Unset all PHP_ and PHP. variables to prevent environment pollution in container
-# (Except standard PHP system variables like PHP_INI_SCAN_DIR or PHPRC)
+# The base PHP image injects its configuration defaults into the environment as PHP.xxx variables.
+# We clear out any PHP.* and PHP_* variables to avoid cluttering the container environment,
+# which causes supervisord and child processes to inherit them and show up in phpinfo() and `env`.
+
 for var in "${vars_to_unset[@]}"; do
     if [ "$var" != "PHP_INI_SCAN_DIR" ] && [ "$var" != "PHPRC" ]; then
+        # Unset doesn't persist to children processes when they are already exported
+        # To make sure they don't propagate to `supervisord`, we must explicitly unexport them or unset them before exec.
+        # However, `unset` is sufficient for variables in bash before calling exec, unless they are handled by some other means.
         unset "$var"
     fi
 done
 
-exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+# Clear environment variables explicitly for the exec call to ensure they don't propagate.
+# The `env` command can be used to scrub specific variables before calling supervisord.
+
+SUPERVISOR_CMD="/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf"
+
+# Construct a string of unset variables for the env command
+ENV_UNSET_ARGS=""
+for var in $(env | cut -d= -f1 | grep -E '^(PHP_|PHP\.)'); do
+    if [ "$var" != "PHP_INI_SCAN_DIR" ] && [ "$var" != "PHPRC" ]; then
+        ENV_UNSET_ARGS="$ENV_UNSET_ARGS -u $var"
+    fi
+done
+
+# Execute supervisord, explicitly unsetting the PHP variables from its environment
+exec env $ENV_UNSET_ARGS $SUPERVISOR_CMD
