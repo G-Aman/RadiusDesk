@@ -78,12 +78,17 @@ for var in $(env | cut -d= -f1 | grep -E '^(PHP_|PHP\.)'); do
     vars_to_unset+=("$var")
 done
 
-# Unset all PHP_ and PHP. variables to prevent environment pollution in container
-# (Except standard PHP system variables like PHP_INI_SCAN_DIR or PHPRC)
+# We construct an arguments list for the `env` command so that it launches supervisord
+# without these variables in its environment. By passing them properly quoted using arrays,
+# we safely bypass bash's restriction that prevents `unset PHP.xxx`.
+
+ENV_CMD=(env)
+
 for var in "${vars_to_unset[@]}"; do
     if [ "$var" != "PHP_INI_SCAN_DIR" ] && [ "$var" != "PHPRC" ]; then
-        unset "$var"
+        ENV_CMD+=("-u" "$var")
     fi
 done
 
-exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+# Execute supervisord, replacing the bash process entirely (PID 1) but with a scrubbed environment
+exec "${ENV_CMD[@]}" /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
