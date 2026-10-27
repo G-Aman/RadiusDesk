@@ -197,11 +197,14 @@ var sConnect = (function () {
                     }
                 });
         }
-         
+                 
         var testForHotspotCoova = function(){
 
             var ip      = getParameterByName('uamip');
             var port    = getParameterByName('uamport');
+            
+            //ssl test
+            var ssl     = getParameterByName('ssl');
 
             if(ip != ''){  //Override defaults
                 uamIp = ip;
@@ -212,16 +215,26 @@ var sConnect = (function () {
             if(port != ''){    //Override defaults
                 uamPort = port;
             }
+            
+            if(ssl != ''){
+                //console.log("The Captive Portal Supports SSL");
+                //console.log(ssl);
+                //Only if the page itself is served on http (since we got a fair amount of cert issues it seems)
+                if(location.protocol == 'https:'){ 
+                    uamIp       = ssl.replace(":4990/","");
+                    uamIp       = uamIp.replace("https://","");
+                    uamPort     = 4990;
+                }
+            }          
             return true;        //Is a hotspot
         }
-        
+                    
         function getParameterByName(name) {
            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                results = regex.exec(location.search);
            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
-
 
          //Expose those public items...
         return {         

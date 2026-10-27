@@ -1,0 +1,51 @@
+services:
+  radiusdesk:
+    image: dirkvanderwalt/radiusdesk:latest
+    container_name: radiusdesk
+
+    restart: always
+    depends_on:
+      - "rdmariadb"
+
+    ports:
+      - "80:80"
+      - "1812:1812/udp"
+      - "1813:1813/udp"
+
+  rdmariadb:
+    container_name: radiusdesk-mariadb
+    image: mariadb:11.8
+
+    restart: always
+    environment:
+      - "MYSQL_ALLOW_EMPTY_PASSWORD=yes"
+      - "MARIADB_USER=rd"
+      - "MARIADB_PASSWORD=rd"
+      - "MARIADB_DATABASE=rd"
+
+    volumes:
+      - ${RADIUSDESK_VOLUME}/db_conf/my_custom.cnf:/etc/mysql/conf.d/my_custom.cnf:ro
+      - rd_data:/var/lib/mysql
+      - ${RADIUSDESK_VOLUME}/db_startup:/tmp
+
+  # Optional phpmyadmin for debugging and db backups
+  #phpmyadmin:
+  #  image: phpmyadmin:latest
+  #  container_name: radiusdesk-phpmyadmin
+  #  restart: always
+  #  ports:
+  #    - "81:80"
+  #  environment:
+  #    - "PMA_HOST=rdmariadb"
+  #    - "PMA_USER=rd"
+  #    - "PMA_PASSWORD=rd"
+  #  depends_on:
+  #    - "rdmariadb"
+
+volumes:
+  rd_data:
+
+networks:
+  default:
+    name: "${RADIUSDESK_NETWORK}"
+    external: true

@@ -88,16 +88,43 @@ Ext.define('Rd.view.components.pnlUsageGraph', {
                         //tpl     : i18n('tpl_In_{in}_Out_{out}_Total_{total}'), 
                         //tpl     : '<h2>In {in} Out {out} Total {total}</h2>',
                         tpl     : [
-                            "<div>",
+                            '<div class="radacct-stats">',
+                                '<div class="stat-item">',
+                                    '<i class="fa fa-arrow-down"></i>',
+                                    '<span class="value">{in}</span>',
+                                    '<span class="label">In</span>',
+                                '</div>',
+
+                                '<div class="stat-item">',
+                                    '<i class="fa fa-arrow-up"></i>',
+                                    '<span class="value">{out}</span>',
+                                    '<span class="label">Out</span>',
+                                '</div>',
+
+                                '<div class="stat-item">',
+                                    "<span class='fa' style='font-family:FontAwesome;'>&#xf0ec</span>",
+                                    '<span class="value">{total}</span>',
+                                    '<span class="label">Total</span>',
+                                '</div>',
+                                '<tpl if="alias">',
+                                    '<div class="stat-item">',
+                                        '<i class="fa fa-tag"></i>',
+                                        '<span class="label">{alias}</span>',
+                                    '</div>',
+                                '</tpl>',
+                            '</div>'
+                        
+                        /*    "<div>",
                             "<label class='lblTipItem'><span style='color:#5c5f63;font-weight:100;'>{in}</span><span style='font-weight:100;'>  in</span></label>",
                             "<div style='clear:both;'></div>",
                             "<label class='lblTipItem'><span style='color:#5c5f63;font-weight:100;'>{out}</span><span style='font-weight:100;'> out</span></label>",
                             "<div style='clear:both;'></div>",
                             "<label class='lblTipItem'><span style='color:#5c5f63;font-weight:700;'>{total}</span>  total</label>",
-                            "</div>"
+                            "</div>"*/
                         ],
                         style   : 'margin-right:5px', 
-                        cls     : 'lblRd' 
+                        //cls     : 'lblRd' 
+                        cls     : 'radacct-grid',
                     }                                
                 ]
             },
@@ -112,7 +139,6 @@ Ext.define('Rd.view.components.pnlUsageGraph', {
                 extraParams : { 'username' : me.username, 'type' : me.type, 'span' : me.span, 'timezone_id' : me.timezone_id },
                 url         : '/cake4/rd_cake/user-stats/index.json',
                 reader      : {
-                    keepRawData     : true,
                     type            : 'json',
                     rootProperty    : 'items',
                     messageProperty : 'message'
@@ -122,15 +148,26 @@ Ext.define('Rd.view.components.pnlUsageGraph', {
                 beforeload  : function(s){
                     chart.setLoading(true);
                 },
+                metachange  : function(store, meta){
+                    var totalIn     = Ext.ux.bytesToHuman(meta.totalIn);
+                    var totalOut    = Ext.ux.bytesToHuman(meta.totalOut);
+                    var totalInOut  = Ext.ux.bytesToHuman(meta.totalInOut);
+                    
+                    var data    = {
+                        'in'   : totalIn,
+                        'out'  : totalOut,
+                        'total': totalInOut
+                    };
+                    if(meta.alias){
+                        data.alias = meta.alias;
+                    }
+                    
+                    me.down('#totals').update(data);
+                },
                 load        : function(s){
                     chart.setLoading(false);
-                    var rawData     = chart.getStore().getProxy().getReader().rawData;
-                    var totalIn     = Ext.ux.bytesToHuman(rawData.totalIn);
-                    var totalOut    = Ext.ux.bytesToHuman(rawData.totalOut);
-                    var totalInOut  = Ext.ux.bytesToHuman(rawData.totalInOut);
-                    me.down('#totals').update({'in': totalIn, 'out': totalOut, 'total': totalInOut });
                 }
-            },
+            },            
             autoLoad: false   
         });
 
@@ -152,7 +189,10 @@ Ext.define('Rd.view.components.pnlUsageGraph', {
                     type        : 'numeric',
                     position    : 'left',
                     adjustByMajorUnit: true,
-                    grid        : true,
+                    grid        : {
+                        stroke          : '#e0e0e0',  // Light gray instead of default dark
+                        'stroke-width'  : 0.5  // Thinner lines
+                    },
                     fields      : ['data_in', 'data_out'],
                     renderer    : function(axis, label, layoutContext) {
                         return Ext.ux.bytesToHuman(label);
@@ -180,7 +220,7 @@ Ext.define('Rd.view.components.pnlUsageGraph', {
                         opacity: 0.80
                     },
                     highlight: {
-                        fillStyle: 'yellow'
+                        fillStyle: '#396175'
                     },
                     tooltip: {
                         renderer: function (tooltip, record, item) {

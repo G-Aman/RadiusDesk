@@ -198,13 +198,7 @@ Ext.define('Rd.controller.cMeshes', {
             },
             'gridNodeLists actioncolumn' : {
                  itemClick  : me.onNodeListsActionColumnItemClick
-            },            
-			'pnlMeshView #editMesh' : {
-			    click: me.btnEditMeshClicked
-			},
-			'pnlMeshEdit #viewMesh' : {
-			    click: me.btnViewMeshClicked
-			}
+            }
         });
     },  
     appClose:   function(){
@@ -734,16 +728,6 @@ Ext.define('Rd.controller.cMeshes', {
             me.view();
         }      
     },
-    btnEditMeshClicked: function(b){
-        var me = this;
-        pnlMeshView = b.up('pnlMeshView');        
-        Ext.getApplication().runAction('cMeshEdits','Index',pnlMeshView,{name:pnlMeshView.getTitle(),id:pnlMeshView.mesh_id});   
-    },
-    btnViewMeshClicked: function(b){
-        var me = this;
-        pnlMeshEdit = b.up('pnlMeshEdit');
-        Ext.getApplication().runAction('cMeshViews','Index',pnlMeshEdit.meshId,pnlMeshEdit.meshName);
-    },
     onNodeListsActionColumnItemClick: function(view, rowIndex, colIndex, item, e, record, row, action){
         //console.log("Action Item "+action+" Clicked");
         var me = this;
@@ -762,5 +746,5 @@ Ext.define('Rd.controller.cMeshes', {
         if(action == 'config'){
             me.getConfig(record);
         }       
-    }
+    }   
 });

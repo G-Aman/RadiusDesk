@@ -41,6 +41,26 @@ Ext.define('Rd.view.aps.vcAccessPointExitPoint', {
 		    d2.disable();
 		}
 	},
+	onChkConnectAndRedirectChange: function(chk){
+		var me 		        = this;
+		var form            = chk.up('form');
+		var txtUamUrl       = form.down('#txtUamUrl');
+		var txtUamSecret    = form.down('#txtUamSecret');
+		var txtWalledGarden = form.down('#txtWalledGarden');
+		var redirUrl        = form.down('#txtConnectAndRedirect');
+			
+		if(chk.getValue()){
+		    txtUamUrl.setDisabled(true);
+		    txtUamSecret.setDisabled(true);
+		    txtWalledGarden.setDisabled(true);
+		    redirUrl.setDisabled(false);	   
+		}else{
+		    txtUamUrl.setDisabled(false);
+		    txtUamSecret.setDisabled(false);
+		    txtWalledGarden.setDisabled(false);
+		    redirUrl.setDisabled(true);    
+		}
+	},
 	onRgrpProtocolChange : function(grp){
 	    var me          = this; 
 	    var win         = grp.up('window');
@@ -75,6 +95,11 @@ Ext.define('Rd.view.aps.vcAccessPointExitPoint', {
                 var l3Detail    = form.down('#pnlLayer3Detail');
                 var tagConWith  = form.down('tagAccessPointEntryPoints');
                 var chkStats    = form.down('#chkNetworkStats');
+                var cmpNetworkStats = form.down('#cmpNetworkStats');
+                var cmpRadius   = form.down('#cmpRadius');
+                
+                //--Hide it initially
+                cmpRadius.setVisible(false);
                 
                 if(t_val == 'openvpn_bridge'){
                     vpn.setVisible(true);
@@ -110,18 +135,21 @@ Ext.define('Rd.view.aps.vcAccessPointExitPoint', {
                 
                 if(t_val == 'nat'){
                     chkStats.show();
+                    cmpNetworkStats.show();
                     chkStats.enable();           
                 }else{
                     chkStats.hide();
+                    cmpNetworkStats.hide();
                     chkStats.disable();
                 }
-                           
+                                          
                 var ent  = form.down("tagAccessPointEntryPoints");
                 ent.setValue(b.result.data.entry_points);
                 if(b.result.data.type == 'captive_portal'){
                 
                     vlan.setVisible(true);
                     vlan.setDisabled(false);
+                    cmpRadius.setVisible(true);
                 
                     //Login Page (Dynamic Detail)
                     if((b.result.data.auto_login_page == true)&&

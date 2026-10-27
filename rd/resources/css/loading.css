@@ -803,3 +803,572 @@
   text-align: center; 
 }
 
+
+/* ============================================================
+   MESHdesk navigation
+   ============================================================ */
+
+.cnt-navigation {
+    border-bottom: 1px solid #dedede;
+    background: #fff;
+}
+
+
+/* ------------------------------------------------------------
+   Navigation container
+   ------------------------------------------------------------ */
+
+.nav-container {
+    display: flex;
+    align-items: stretch;
+
+    width: 100%;
+    height: 64px;
+
+    padding: 0 12px;
+
+    justify-content: flex-start;
+    gap: 2px;
+}
+
+
+/* ------------------------------------------------------------
+   Normal navigation item
+   ------------------------------------------------------------ */
+
+.nav-item-wrap {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 145px;
+    height: 64px;
+
+    padding: 5px 12px 6px;
+
+    cursor: pointer;
+
+    background-color: transparent;
+
+    border-radius: 0;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 120ms ease,
+        color 120ms ease;
+}
+
+
+/* ------------------------------------------------------------
+   Icon
+   ------------------------------------------------------------ */
+
+.nav-item-icon {
+    display: block;
+
+    font-size: 21px;
+    line-height: 24px;
+
+    color: #454545;
+
+    margin-bottom: 3px;
+
+    font-style: normal;
+}
+
+
+/* ------------------------------------------------------------
+   Text
+   ------------------------------------------------------------ */
+
+.nav-item-text {
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #555;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* ------------------------------------------------------------
+   Hover
+   ------------------------------------------------------------ */
+
+.nav-item-wrap:hover {
+    background-color: #f5f7f9;
+}
+
+.nav-item-wrap:hover .nav-item-icon,
+.nav-item-wrap:hover .nav-item-text {
+    color: #1677b8;
+}
+
+
+/* ------------------------------------------------------------
+   Selected / active item
+   ------------------------------------------------------------ */
+
+.nav-item-selected {
+    background-color: #f1f7fb !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    color: #1677b8 !important;
+}
+
+
+/* Active icon + text */
+
+.nav-item-selected .nav-item-icon,
+.nav-item-selected .nav-item-text {
+    color: #1677b8 !important;
+}
+
+
+/* Active indicator */
+
+.nav-item-selected::after {
+    content: '';
+
+    position: absolute;
+
+    left: 14px;
+    right: 14px;
+    bottom: 0;
+
+    height: 3px;
+
+    background-color: #1677b8;
+
+    border-radius: 3px 3px 0 0;
+}
+
+
+/* ============================================================
+   Edit Mesh action
+   ============================================================ */
+
+.nav-item-link-type {
+    margin-left: auto;
+
+    flex: 0 0 60px;
+
+    width: 60px !important;
+    height: 60px !important;
+
+    align-self: center;
+
+    padding: 0 !important;
+
+    border-radius: 50% !important;
+    border: none !important;
+
+    background-color: #6a1b9a;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 120ms ease,
+        transform 120ms ease,
+        box-shadow 120ms ease;
+}
+
+
+/* Edit Mesh icon */
+
+.nav-item-link-type .nav-item-icon {
+    font-size: 21px !important;
+    line-height: 24px;
+
+    color: #fff !important;
+
+    margin-bottom: 2px;
+
+    -webkit-text-stroke: 0 !important;
+}
+
+
+/* Edit Mesh text */
+
+.nav-item-link-type .nav-item-text {
+    color: #fff !important;
+
+    font-size: 9px !important;
+    line-height: 11px;
+
+    max-width: 55px;
+
+    white-space: normal;
+}
+
+
+/* Edit Mesh hover */
+
+.nav-item-link-type:hover,
+.nav-item-link-type.nav-item-hover {
+    background-color: #7b1fa2 !important;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Edit Mesh selected */
+
+.nav-item-link-type.nav-item-selected {
+    background-color: #4a148c !important;
+
+    border: none !important;
+}
+
+.nav-item-link-type.nav-item-selected::after {
+    display: none;
+}
+
+
+/* --- 10Sept 2026 ---*/
+.mesh-usage-card {
+    height: 100%;
+    box-sizing: border-box;
+    padding: 18px 24px;
+    text-align: center;
+    background: #fff;
+}
+
+/* -------------------------
+   Header / object
+   ------------------------- */
+
+.mesh-usage-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    color: #6f6f6f;
+    font-size: 14px;
+    font-weight: 600;
+
+    margin-bottom: 18px;
+}
+
+.mesh-usage-title i {
+    color: #29465b;
+    font-size: 16px;
+}
+
+/* -------------------------
+   Main number
+   ------------------------- */
+
+.mesh-usage-total {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    color: #29465b;
+    font-size: 34px;
+    font-weight: 600;
+
+    line-height: 1.1;
+}
+
+.mesh-usage-total i {
+    font-size: 26px;
+    opacity: .85;
+}
+
+.mesh-usage-caption {
+    margin-top: 5px;
+
+    color: #999;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* -------------------------
+   Download / Upload
+   ------------------------- */
+
+.mesh-usage-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+
+    margin-top: 25px;
+}
+
+.mesh-usage-stat {
+    min-width: 90px;
+}
+
+.mesh-usage-stat-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    color: #666;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.mesh-usage-stat-value i {
+    font-size: 15px;
+    color: #888;
+}
+
+.mesh-usage-stat-label {
+    margin-top: 4px;
+
+    color: #aaa;
+    font-size: 11px;
+}
+
+
+/* --- 10Sept 2026 Part 2 ---*/
+
+.mesh-signal-current,
+.mesh-signal-average {
+    border: 0;
+    background: #eeeeee;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.mesh-signal-current .x-progress-bar,
+.mesh-signal-average .x-progress-bar {
+    border: 0;
+    border-radius: 2px;
+}
+
+.mesh-signal-current .x-progress-text,
+.mesh-signal-average .x-progress-text {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.mesh-signal-current .x-progress-bar {
+    background: #5b9bd5;
+}
+
+.mesh-signal-average .x-progress-bar {
+    background: #7aa6a8;
+}
+
+
+/* --- 10Sept 2026 Pert 3 ---*/
+.mesh-device-info {
+    padding: 0 10px 10px;
+}
+
+/* -------------------------
+   Information rows
+   ------------------------- */
+
+.mesh-info-row {
+    display: flex;
+    align-items: center;
+
+    min-height: 42px;
+
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mesh-info-icon {
+    width: 30px;
+    text-align: center;
+
+    font-size: 15px;
+}
+
+.mesh-icon-device {
+    color: #3c6cb7;
+}
+
+.mesh-icon-wifi {
+    color: #238080;
+}
+
+.mesh-icon-node {
+    color: #666;
+}
+
+.mesh-icon-time {
+    color: #888;
+}
+
+.mesh-info-content {
+    flex: 1;
+    padding-left: 6px;
+}
+
+.mesh-info-main {
+    color: #444;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.mesh-info-secondary {
+    margin-top: 2px;
+
+    color: #999;
+    font-size: 11px;
+}
+
+/* -------------------------
+   Recent connections
+   ------------------------- */
+
+.mesh-history-title {
+    margin-top: 12px;
+    padding: 7px 8px;
+
+    background: #f5f5f5;
+
+    color: #666;
+    font-size: 11px;
+    font-weight: 600;
+
+    border-left: 3px solid #238080;
+}
+
+.mesh-history {
+    padding: 4px 8px;
+}
+
+.mesh-history-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 5px 0;
+
+    border-bottom: 1px solid #f2f2f2;
+
+    color: #555;
+    font-size: 11px;
+}
+
+.mesh-history-row small {
+    color: #aaa;
+}
+
+
+.mesh-card .x-panel-body {
+    border: 1px solid #e5e5e5 !important;
+    border-radius: 2px;
+}
+
+
+/*=== 19Sept 2026 ====*/
+.attr-list {
+    list-style: none;
+    margin: 8px 0 0 0;
+    padding: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+}
+
+.attr-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.attr-item:last-child {
+    border-bottom: none;
+}
+
+.attr-item:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+.attr-name {
+    font-weight: 600;
+    color: #2c3e50;
+    letter-spacing: 0.2px;
+}
+
+.attr-value {
+    font-family: "SF Mono", Consolas, "Courier New", monospace;
+    font-size: 12px;
+    color: #34495e;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 8px;
+    border-radius: 4px;
+    word-break: break-all;
+    margin-left: 12px;
+    text-align: right;
+}
+
+
+/* ── Container rounds ────────────────────────────────────────── */
+.blue_round_new,
+.green_round_new,
+.red_round_new {
+    border-radius: 10px;
+    padding: 16px 20px 18px 20px;
+    margin: 12px 0;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+}
+
+/* Coloured left accent + subtle tint per state */
+.blue_round_new {
+    border-left: 4px solid #3498db;
+    background: linear-gradient(to right, rgba(52, 152, 219, 0.06), transparent 40%);
+}
+
+.green_round_new {
+    border-left: 4px solid #27ae60;
+    background: linear-gradient(to right, rgba(39, 174, 96, 0.06), transparent 40%);
+}
+
+.red_round_new {
+    border-left: 4px solid #e74c3c;
+    background: linear-gradient(to right, rgba(231, 76, 60, 0.06), transparent 40%);
+}
+
+/* ── Headers inside rounds ───────────────────────────────────── */
+.blue_round_new > h1,
+.green_round_new > h1,
+.red_round_new > h1 {
+    margin: 0 0 12px 0;
+    padding: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #2c3e50;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+/* Header accent colour matches the container */
+.blue_round_new  > h1 { color: #2980b9; }
+.green_round_new > h1 { color: #1e8449; }
+.red_round_new   > h1 { color: #c0392b; }
+
+/* Remove the bottom margin when the <ul> follows directly */
+.blue_round_new  > h1 + .attr-list,
+.green_round_new > h1 + .attr-list,
+.red_round_new   > h1 + .attr-list {
+    margin-top: 0;
+}

@@ -183,7 +183,6 @@ Ext.define('Rd.controller.cAccessPointEdits', {
                 glyph   : Rd.config.icnEdit, 
                 title   : name,
                 closable: true,
-                layout  : 'fit',
                 xtype   : 'pnlAccessPointEdit',
                 itemId  : id,
                 ap_profile_id : ap_profile_id
@@ -460,6 +459,8 @@ Ext.define('Rd.controller.cAccessPointEdits', {
         var vpn     = win.down('#cmbOpenVpnServers');
         var pppoe   = win.down('#cmbAccelProfiles'); 
         var a_nas   = win.down('#chkNasClient');
+        var cmpRadius = win.down('#cmpRadius');
+        
         var cmb_realm = win.down('#cmbRealm');
         var a_page  = win.down('#chkLoginPage');
         var cmb_page= win.down('cmbDynamicDetail');
@@ -517,6 +518,9 @@ Ext.define('Rd.controller.cAccessPointEdits', {
 						
 			a_nas.setVisible(true);
 			a_nas.setDisabled(false);
+			cmpRadius.setVisible(true);
+			
+			
 			a_page.setVisible(true);
 			a_page.setDisabled(false);
 			cmb_page.setVisible(true);
@@ -530,6 +534,8 @@ Ext.define('Rd.controller.cAccessPointEdits', {
 			
 			a_nas.setVisible(false);
 			a_nas.setDisabled(true);
+			cmpRadius.setVisible(false);
+			
 			a_page.setVisible(false);
 			a_page.setDisabled(true);
 			cmb_page.setVisible(false);

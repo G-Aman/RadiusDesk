@@ -5,8 +5,7 @@ Ext.define('Rd.view.meshes.gridMeshViewNodeNodes' ,{
         'Rd.store.sMeshViewNodeNodes',
         'Rd.model.mMeshViewNodeNode',
         'Ext.toolbar.Paging',
-        'Ext.ux.ProgressBarPager',
-        'Rd.view.components.btnGrpRefreshAndTimespan'
+        'Ext.ux.ProgressBarPager'
     ],
     multiSelect : true,
     stateful    : true,
@@ -17,7 +16,43 @@ Ext.define('Rd.view.meshes.gridMeshViewNodeNodes' ,{
         loadMask:true
     },
     tbar: [
-        { xtype : 'btnGrpRefreshAndTimespan' }
+        {   
+            xtype   : 'button', 
+            glyph   : Rd.config.icnReload , 
+            scale   : 'small', 
+            itemId  : 'reload',   
+            tooltip : i18n('sReload'),
+            ui      : 'button-orange'
+        },
+        '|',
+        {   
+            xtype       : 'button', 
+            text        : '1 Hour',    
+            toggleGroup : 'time_n', 
+            enableToggle : true,
+            scale       : 'small', 
+            itemId      : 'hour', 
+            pressed     : true,
+            ui          : 'button-metal' 
+        },
+        { 
+            xtype       : 'button', 
+            text        : '24 Hours',   
+            toggleGroup : 'time_n', 
+            enableToggle : true, 
+            scale       : 'small', 
+            itemId      : 'day',
+            ui          : 'button-metal' 
+        },
+        { 
+            xtype       : 'button', 
+            text        : '7 Days',     
+            toggleGroup : 'time_n', 
+            enableToggle : true, 
+            scale       : 'small', 
+            itemId      : 'week',
+            ui          : 'button-metal' 
+        }
     ],
     features: [{
         //ftype: 'grouping',

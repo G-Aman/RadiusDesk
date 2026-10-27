@@ -2,7 +2,9 @@
 
 set -xu
 
-docker network create --attachable -d bridge radiusdesk-bridge || exit 1
+if ! docker network inspect radiusdesk-bridge > /dev/null 2>&1; then
+    docker network create --attachable -d bridge radiusdesk-bridge || exit 1
+fi
 
 source ./.env
 
@@ -32,8 +34,8 @@ else
     git clone https://github.com/RADIUSdesk/rdcore || exit 1
 fi
 
-cp rdcore/cake4/rd_cake/setup/db/rd.sql $RADIUSDESK_VOLUME/db_startup || exit 1
-cp -r rdcore/cake4/rd_cake/setup/db/* $RADIUSDESK_VOLUME/db_startup/db_patches/ || exit 1
+cp rd_cake5/rd_cake/setup/db/rd.sql $RADIUSDESK_VOLUME/db_startup || exit 1
+cp -r rd_cake5/rd_cake/setup/db/* $RADIUSDESK_VOLUME/db_startup/db_patches/ || exit 1
 cp db_priveleges.sql $RADIUSDESK_VOLUME/db_startup || exit 1
 cp startup.sh $RADIUSDESK_VOLUME/db_startup || exit 1
 cp my_custom.cnf $RADIUSDESK_VOLUME/db_conf || exit 1
@@ -44,8 +46,12 @@ echo Building docker database container ...
 docker compose up -d rdmariadb || exit 1
 
 echo
-echo Waiting for MariaDB to come up ...
-sleep 60
+echo "Waiting for MariaDB to come up..."
+until docker compose exec rdmariadb mariadb-admin ping -uroot &>/dev/null; do
+  echo -n "."
+  sleep 10
+done
+echo " MariaDB is ready!"
 
 echo Creating database for Radiusdesk ...
 # Build daatabase
@@ -55,7 +61,7 @@ echo Building Radiusdesk container with nginx, php-fpm and freeradius ...
 
 # Ensure DB host is set for Docker Compose
 echo "Setting DB host to 'rdmariadb' in app_local.php ..."
-sed -i "s/'host' *=> *'localhost'/'host' => 'rdmariadb'/g" rdcore/cake4/rd_cake/config/app_local.php
+sed -i "s/'host' *=> *'localhost'/'host' => 'rdmariadb'/g" rd_cake5/rd_cake/config/app_local.php
 
 docker compose build || exit 1
 docker compose up -d radiusdesk || exit 1
